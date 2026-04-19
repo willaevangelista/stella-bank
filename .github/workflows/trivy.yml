@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scan (filesystem)
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@v0
         with:
           scan-type: fs
           ignore-unfixed: true
@@ -23,7 +23,7 @@ jobs:
           severity: CRITICAL,HIGH
 
       - name: Fail build on vulnerabilities
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@v0
         with:
           scan-type: fs
           format: table
