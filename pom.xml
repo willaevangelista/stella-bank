@@ -167,6 +167,30 @@
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.12.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/stellabank-api.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.stellabank.infrastructure.adapter.in.rest.api</apiPackage>
+                            <modelPackage>com.stellabank.infrastructure.adapter.in.rest.dto</modelPackage>
+                            <configOptions>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useTags>true</useTags>
+                                <openApiNullable>false</openApiNullable>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 
