@@ -1,12 +1,8 @@
 on:
   push:
-    branches:
-      - main
-      - master
-      - develop
-      - 'releases/**'
+    branches: [main]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [main]
 
 name: Sonar Scan
 
@@ -18,6 +14,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up JDK 26
+        uses: oracle-actions/setup-java@v1
+        with:
+          website: oracle.com
+          release: 26
+
+      - name: Build with Maven
+        run: mvn clean compile -DskipTests
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5.3.1
         env:
@@ -27,3 +32,4 @@ jobs:
           args: >
             -Dsonar.projectKey=willaevangelista_stella-bank
             -Dsonar.organization=willaevangelista
+            -Dsonar.java.binaries=target/classes
